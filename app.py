@@ -26,9 +26,17 @@ def home():
     cursor.close()
     conn.close()
 
-    # 3. Palauta molemmat selaimelle
+    # 3. Personoitu tarina
+    story = (
+        "Tervetuloa LEMP-applikaatioon! "
+        "Täällä MySQL-palvelin kertoo ajankohtaisen kellonajan, "
+        "ja voit aloittaa oman seikkailusi tietokantojen maailmassa."
+    )
+
+    # 4. Palauta kaikki selaimelle
     return f"""
         <h1>{result[0]}</h1>
+        <p>{story}</p>
         <p>SQL-serverin kellonaika: {time_result[0]}</p>
     """
 
