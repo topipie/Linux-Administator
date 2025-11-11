@@ -1,0 +1,10 @@
+[Unit]
+Description=Streamlit Server
+After=network.target
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/myapp
+ExecStart=/bin/bash -c "source /home/ubuntu/myapp/venv/bin/activate && pip install -r /home/ubuntu/myapp/.streamlit/requirements.txt && streamlit run /home/ubuntu/myapp/streamlit_app.py"
+Restart=always
+[Install]
+WantedBy=multi-user.target
