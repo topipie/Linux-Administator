@@ -8,9 +8,9 @@ def home():
     # Connect to MySQL/MariaDB
     conn = mysql.connector.connect(
         host="localhost",
-        user="exampleuser",
-        password="change_this_strong_password",
-        database="exampledb"
+        user="ö",
+        password="ö,
+        database="öööö"
     )
     cursor = conn.cursor()
 
