@@ -26,7 +26,7 @@ def kemin_lampotilat_page():
 
 # --- FUNKTIO OPENWEATHERDATAAN ---
 def weather_page():
-    st.title("15 min välein päivittyvä säädata Helsingistä (OpenWeatherMap)")
+    st.title("15 min välein päivittyvä säädata Helsingistä (50kpl)")
 
     conn = mysql.connector.connect(
         host=st.secrets["mysql"]["host"],
@@ -40,10 +40,16 @@ def weather_page():
     df = pd.read_sql(query, conn)
     conn.close()
 
+    if not df.empty:
+        df['timestamp'] = pd.to_datetime(df['timestamp'])
+        df['timestamp'] = df['timestamp'].dt.tz_localize('UTC').dt.tz_convert('Europe/Helsinki')
+        df['timestamp'] = df['timestamp'].dt.strftime('%H:%M')
+
     st.dataframe(df)
 
     if not df.empty:
-        fig = px.line(df, x="timestamp", y="temperature", color="city", title="Viimeisimmät lämpötilat")
+        fig = px.line(df, x="timestamp", y="temperature", color="city", title="50kpl viimeisimpää lämpötilaa")
+        fig.update_xaxes(autorange="reversed")
         st.plotly_chart(fig, use_container_width=True)
 
 # --- UUSI FUNKTIO: CHUCK NORRIS -VITSIT ---
