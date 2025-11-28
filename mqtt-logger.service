@@ -1,0 +1,13 @@
+[Unit]
+Description=MQTT to MySQL Logger
+After=network.target mysql.service docker.service
+Wants=mysql.service
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/mqtt-chat
+ExecStart=/usr/bin/python3 /home/ubuntu/mqtt-chat/mqtt_logger.py
+Restart=always
+RestartSec=10
+[Install]
+WantedBy=multi-user.target
