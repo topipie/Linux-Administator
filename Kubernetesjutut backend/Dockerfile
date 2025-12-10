@@ -9,8 +9,5 @@ COPY app.py .
 
 EXPOSE 5000
 
-<<<<<<< HEAD
 CMD ["python", "app.py"]
-=======
-CMD ["python", "app.py"]
->>>>>>> 32b38399142e36afe941ce454e8dc663fd17b8e1
+
